@@ -1,2 +1,2 @@
-# TransportHotspotsWeb
-Web Project for 2016 GovHack for TeamTransportRoadRunner
+# TransportHotspots Web Repository
+Part of 2016 GovHack
