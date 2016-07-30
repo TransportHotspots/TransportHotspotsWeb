@@ -3,13 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <title>Transport Hotspots Webapp</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link type="text/css" href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700,500italic" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
 
     <script type="application/javascript" src="resources/js/generated/angularjs-bundle.js"></script>
     <script type="application/javascript" src="resources/js/transporthotspots-app.js"></script>
+    <script type="application/javascript" src="resources/js/transporthotspots-controllers.js"></script>
 </head>
-<body ng-app="transportHotspotsApp" ng-controller="globalController">
-    <h3>Test test test</h3>
+<body ng-app="transportHotspotsApp" ng-controller="searchController">
+
+<div class="title-holder">
+    <h2 class="page-title2">Transport Hotspot - Find Your Own Route!</h2>
+</div>
+
+<div class="container-fluid">
+
+    <!-- Search Form -->
+    <div class="row">
+        <div class="col-md-12">
+
+            <form role="form" name="searchForm" class="container" novalidate ng-submit="searchForm.$valid && search()">
+
+                <div class="row">
+
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label>Travel From:</label>
+                            <select class="form-control" ng-model="selectedFromLocation" required>
+                                <option ng-repeat="(key, value) in fromLocations" value="{{key}}">{{value}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label>Travel To:</label>
+                            <select class="form-control" ng-model="selectedToLocation" required>
+                                <option ng-repeat="(key, value) in toLocations" value="{{key}}">{{value}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <button type="button" class="btn btn-primary col-center-block col-xs-12" ng-click="reset()">
+                            <span class="glyphicon glyphicon-retweet"></span>&nbsp;Reset
+                        </button>
+                    </div>
+                    <div class="col-xs-6">
+                        <button type="submit" class="btn btn-primary col-center-block col-xs-12">
+                            <span class="glyphicon glyphicon-search"></span>&nbsp;Search
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Routes Results -->
+    <div class="row">
+        <div class="col-md-12">
+            <h3 ng-if="routes !== undefined">Recommended route:</h3>
+
+            <div ng-repeat="(key, value) in routes">
+                <span class="glyphicon" ng-class="{
+                    'glyphicon-thumbs-up rating-good': value.rating == 3,
+                    'glyphicon-hand-right rating-neutral': value.rating == 2,
+                    'glyphicon-thumbs-down rating-bad': value.rating == 1}"></span>
+                <label for="vote-{{key}}">{{value.name}}</label>
+                <button id="vote-{{key}}" type="button" title="Vote" class="btn-sm btn-info" ng-click="toggleVoting(key)">
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                </button>
+                <div ng-if="enableVoting(key)">
+                    <p>Blah</p>
+                </div>
+
+                <button uib-popover-template="dynamicPopover.templateUrl"
+                        popover-title="{{value.name}}"
+                        popover-trigger="focus"
+                        type="button" class="btn btn-default">Vote</button>
+
+                <script type="text/ng-template" id="ratingPopoverTemplate.html">
+                    <div class="form-group">
+                        <label>Congestion rating:</label>
+                        <input type="text" ng-model="dynamicPopover.rating" class="form-control">
+                        <button type="button" title="Vote" class="btn-sm btn-info" ng-click="submitRating(key)">
+                            Rate
+                        </button>
+                    </div>
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

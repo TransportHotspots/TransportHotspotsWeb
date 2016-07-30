@@ -1,0 +1,27 @@
+.col-center-block {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-round {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.rating-good {
+    color: green;
+    margin-right: 5px;
+}
+
+.rating-neutral {
+    color: darkorange;
+    margin-right: 5px;
+}
+
+.rating-bad {
+    color: red;
+    margin-right: 5px;
+}
