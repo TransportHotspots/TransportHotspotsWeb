@@ -1,0 +1,11 @@
+{
+  "name": "transport-hotspots",
+  "version": "1.0.0",
+  "description": "Transport Hotspots Webapp",
+  "appPath": "src/main/webapp",
+  "dependencies": {
+    "angular": "1.5.3",
+    "angular-bootstrap": "~1.3.2",
+    "angular-route": "1.5.3"
+  }
+}

@@ -2,6 +2,7 @@
 # System files files #
 ###################
 .idea/
+bower_components/
 
 # Compiled source #
 ###################
