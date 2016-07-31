@@ -14,11 +14,18 @@
 </head>
 <body ng-app="transportHotspotsApp" ng-controller="searchController">
 
-<div class="title-holder">
-    <h2 class="page-title2">Transport Hotspot - Find Your Own Route!</h2>
-</div>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <h3 class="brand">Transport Hotspots</h3>
+    </div>
+</nav>
 
 <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Find Your Own Route!</h4>
+        </div>
+    </div>
 
     <!-- Search Form -->
     <div class="row">
@@ -85,20 +92,30 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 user-rating" ng-if="enableVoting(key)">
-                        <span>Station congestion rating:</span>
-                        <span style="float: right">
-                            <input-stars max="5"
-                                         ng-model="value.currentUserRating"
-                                         icon-base="glyphicon glyphicon-star"
-                                         icon-hover="star-hover"
-                                         icon-full="star-hover"
-                                         icon-empty="glyphicon-star-empty">
-                            </input-stars>
-                            <button type="button" title="Submit rating" class="btn-xs btn-info rate-button"
-                                    ng-click="submitRating(key, value)">
-                                Rate
-                            </button>
-                        </span>
+                        <!--<span>Congested?</span>-->
+                        <div class="col-xs-8 col-center-block">
+                            <small class="rating-label">Squish&nbsp;</small>
+                            <div class="input-stars-wrapper">
+                                <input-stars max="5"
+                                             ng-model="value.currentUserRating"
+                                             icon-base="glyphicon glyphicon-star"
+                                             icon-hover="star-hover"
+                                             icon-full="star-hover"
+                                             icon-empty="glyphicon-star-empty">
+                                </input-stars>
+                            </div>
+                            <small class="rating-label">Chill&nbsp;</small>
+                        </div>
+                        <button type="button" title="Submit rating"
+                                class="btn-xs btn-info rate-button"
+                                ng-click="submitRating(key, value)">
+                            Rate
+                        </button>
+                    </div>
+                </div>
+                <div class="row" ng-if="!$last">
+                    <div class="col-center-block route-direction" style="font-size: 24px">
+                        <span class="glyphicon glyphicon-arrow-down"></span>
                     </div>
                 </div>
             </div>

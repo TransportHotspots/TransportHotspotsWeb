@@ -52,6 +52,10 @@
     list-style: none;
 }
 
+div.input-stars-wrapper {
+    float: left;
+}
+
 button.enable-rating-button {
     float: right;
 }
@@ -66,4 +70,17 @@ button.rate-button {
 div.station-info {
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+div.route-direction {
+    font-size: 30px;
+    text-align: center;
+    color: grey;
+}
+
+small.rating-label {
+    float: left;
+    margin-top: 4px;
+    margin-left: 8px;
+    margin-right: 8px;
 }
