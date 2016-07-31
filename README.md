@@ -10,4 +10,7 @@ Folders:
 Everything under this folder is our project prototype, a web application built with Angular on the front-end, utilize for viewing on mobile devices.
 
 - resources:
-Include our database scripts and cron job, our ideas on how to utilize the open data and the user data we collect from our web application.
+Include our database scripts and cron jobs.
+
+The cronjob is used to pull Transport NSW API data using CURL, then uses the Postgres COPY command to load the data into our postgres database.
+The databae create script is a schema to hold the user rating data collected from our web application.
