@@ -3,6 +3,7 @@
 ###################
 .idea/
 bower_components/
+node_modules/
 
 # Compiled source #
 ###################
