@@ -3,7 +3,6 @@ var appControllers = angular.module('appControllers', []);
 appControllers.controller('searchController', [
     '$scope',
     function($scope) {
-        var vm = this;
         $scope.fromLocations = {
             '0': 'Bondi Junction',
             '1': 'Circular Quay',
@@ -99,8 +98,9 @@ appControllers.controller('searchController', [
         };
 
         $scope.reset = function() {
-            $scope.fromLocations = -1;
-            $scope.toLocations = -1;
+            $scope.selectedFromLocation = -1;
+            $scope.selectedToLocation = -1;
+            $scope.routes = undefined;
         };
 
         $scope.toggleVoting = function(stationId) {
