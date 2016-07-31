@@ -1,3 +1,10 @@
+img.logo {
+    float: left;
+    margin: 2px;
+    padding-top: 6px;
+    width: 20%
+}
+
 .col-center-block {
     float: none;
     display: block;
@@ -24,6 +31,10 @@
 .rating-bad {
     color: red;
     margin-right: 5px;
+}
+
+.star-base {
+    color: grey;
 }
 
 .star-hover {
@@ -74,7 +85,6 @@ div.station-info {
 
 div.route-direction {
     font-size: 30px;
-    text-align: center;
     color: grey;
 }
 
@@ -83,4 +93,8 @@ small.rating-label {
     margin-top: 4px;
     margin-left: 8px;
     margin-right: 8px;
+}
+
+.transit-text {
+    font-size: 14px;
 }

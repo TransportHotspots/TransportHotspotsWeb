@@ -16,6 +16,7 @@
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
+        <img class="logo" src="resources/img/logo.png" alt="Transport Hotspots logo"></img>
         <h3 class="brand">Transport Hotspots</h3>
     </div>
 </nav>
@@ -73,32 +74,31 @@
     <!-- Routes Results -->
     <div class="row">
         <div class="col-md-12">
-            <h3 ng-if="routes !== undefined">Recommended route:</h3>
+            <h4 ng-if="routes !== undefined">Recommended Route:</h4>
 
             <div ng-repeat="(key, value) in routes">
                 <div class="row">
                     <div class="col-md-12 station-info">
-                        <span class="glyphicon" ng-class="{
-                            'glyphicon-thumbs-up rating-good': value.rating == 3,
-                            'glyphicon-hand-right rating-neutral': value.rating == 2,
-                            'glyphicon-thumbs-down rating-bad': value.rating == 1}"></span>
-                        <label for="rate-{{key}}">{{value.name}}</label>
-                        <button id="rate-{{key}}" type="button" title="Vote" class="btn-xs btn-info enable-rating-button"
+                        <span class="glyphicon glyphicon-fire" ng-class="{
+                            'rating-good': value.rating == 3,
+                            'rating-neutral': value.rating == 2,
+                            'rating-bad': value.rating == 1}"></span>
+                        <label for="rate-{{value.stationId}}">{{value.name}}</label>
+                        <button id="rate-{{value.stationId}}" type="button" title="Vote" class="btn-xs btn-info enable-rating-button"
                                 ng-if="value.enableVoting"
-                                ng-click="toggleVoting(key)">
+                                ng-click="toggleVoting(value.stationId)">
                             <span class="glyphicon glyphicon-chevron-down"></span>
                         </button>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12 user-rating" ng-if="enableVoting(key)">
-                        <!--<span>Congested?</span>-->
-                        <div class="col-xs-8 col-center-block">
+                    <div class="col-md-12 user-rating" ng-if="enableVoting(value.stationId)">
+                        <div class="col-xs-10 col-center-block">
                             <small class="rating-label">Squish&nbsp;</small>
                             <div class="input-stars-wrapper">
                                 <input-stars max="5"
                                              ng-model="value.currentUserRating"
-                                             icon-base="glyphicon glyphicon-star"
+                                             icon-base="glyphicon glyphicon-star star-base"
                                              icon-hover="star-hover"
                                              icon-full="star-hover"
                                              icon-empty="glyphicon-star-empty">
@@ -108,14 +108,15 @@
                         </div>
                         <button type="button" title="Submit rating"
                                 class="btn-xs btn-info rate-button"
-                                ng-click="submitRating(key, value)">
+                                ng-click="submitRating(value.stationId, value)">
                             Rate
                         </button>
                     </div>
                 </div>
                 <div class="row" ng-if="!$last">
-                    <div class="col-center-block route-direction" style="font-size: 24px">
-                        <span class="glyphicon glyphicon-arrow-down"></span>
+                    <div class="col-xs-offset-1 route-direction" style="font-size: 24px">
+                        <span class="glyphicon glyphicon-arrow-down"></span>&nbsp;
+                        <span ng-if="value.transit !== undefined" class="transit-text">#{{value.transit.transitOrder}}&nbsp;Transit to {{value.transit.transitTo}}</span>
                     </div>
                 </div>
             </div>
