@@ -25,3 +25,45 @@
     color: red;
     margin-right: 5px;
 }
+
+.star-hover {
+    color: gold;
+}
+
+.user-rating {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.user-rating ul li {
+    float: left;
+    font-size: 24px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.user-rating ul li i.glyphicon-star.active {
+    color: gold;
+}
+
+.angular-input-stars {
+    display: inline-block;
+    padding: 0;
+    list-style: none;
+}
+
+button.enable-rating-button {
+    float: right;
+}
+
+button.rate-button {
+    float: right;
+    vertical-align: middle;
+    margin-left: 2px;
+    margin-top: 2px;
+}
+
+div.station-info {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Transport Hotspots Webapp</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link type="text/css" href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700,500italic" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700,500italic" />
     <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
 
     <script type="application/javascript" src="resources/js/generated/angularjs-bundle.js"></script>
@@ -68,32 +69,38 @@
             <h3 ng-if="routes !== undefined">Recommended route:</h3>
 
             <div ng-repeat="(key, value) in routes">
-                <span class="glyphicon" ng-class="{
-                    'glyphicon-thumbs-up rating-good': value.rating == 3,
-                    'glyphicon-hand-right rating-neutral': value.rating == 2,
-                    'glyphicon-thumbs-down rating-bad': value.rating == 1}"></span>
-                <label for="vote-{{key}}">{{value.name}}</label>
-                <button id="vote-{{key}}" type="button" title="Vote" class="btn-sm btn-info" ng-click="toggleVoting(key)">
-                    <span class="glyphicon glyphicon-chevron-down"></span>
-                </button>
-                <div ng-if="enableVoting(key)">
-                    <p>Blah</p>
-                </div>
-
-                <button uib-popover-template="dynamicPopover.templateUrl"
-                        popover-title="{{value.name}}"
-                        popover-trigger="focus"
-                        type="button" class="btn btn-default">Vote</button>
-
-                <script type="text/ng-template" id="ratingPopoverTemplate.html">
-                    <div class="form-group">
-                        <label>Congestion rating:</label>
-                        <input type="text" ng-model="dynamicPopover.rating" class="form-control">
-                        <button type="button" title="Vote" class="btn-sm btn-info" ng-click="submitRating(key)">
-                            Rate
+                <div class="row">
+                    <div class="col-md-12 station-info">
+                        <span class="glyphicon" ng-class="{
+                            'glyphicon-thumbs-up rating-good': value.rating == 3,
+                            'glyphicon-hand-right rating-neutral': value.rating == 2,
+                            'glyphicon-thumbs-down rating-bad': value.rating == 1}"></span>
+                        <label for="rate-{{key}}">{{value.name}}</label>
+                        <button id="rate-{{key}}" type="button" title="Vote" class="btn-xs btn-info enable-rating-button"
+                                ng-if="value.enableVoting"
+                                ng-click="toggleVoting(key)">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
                         </button>
                     </div>
-                </script>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 user-rating" ng-if="enableVoting(key)">
+                        <span>Station congestion rating:</span>
+                        <span style="float: right">
+                            <input-stars max="5"
+                                         ng-model="value.currentUserRating"
+                                         icon-base="glyphicon glyphicon-star"
+                                         icon-hover="star-hover"
+                                         icon-full="star-hover"
+                                         icon-empty="glyphicon-star-empty">
+                            </input-stars>
+                            <button type="button" title="Submit rating" class="btn-xs btn-info rate-button"
+                                    ng-click="submitRating(key, value)">
+                                Rate
+                            </button>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

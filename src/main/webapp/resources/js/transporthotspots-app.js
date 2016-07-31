@@ -1,4 +1,5 @@
 var transportHotspotsApp = angular.module('transportHotspotsApp', [
     'ui.bootstrap',
-    'appControllers'
+    'appControllers',
+    'angular-input-stars'
 ]);

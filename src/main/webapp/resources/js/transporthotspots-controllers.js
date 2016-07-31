@@ -3,6 +3,9 @@ var appControllers = angular.module('appControllers', []);
 appControllers.controller('searchController', [
     '$scope',
     function($scope) {
+        var vm = this;
+        vm.currentUserRating = undefined;
+
         $scope.fromLocations = {
             '0': 'North Sydney',
             '1': 'b',
@@ -32,7 +35,8 @@ appControllers.controller('searchController', [
                     'toLocation': true,
                     'isTransit': false,
                     'rating': 2,
-                    'enableVoting': false
+                    'enableVoting': true,
+                    'currentUserRating': undefined
                 },
                 '1': {
                     'name': 'Town Hall',
@@ -40,7 +44,8 @@ appControllers.controller('searchController', [
                     'toLocation': false,
                     'isTransit': true,
                     'rating': 1,
-                    'enableVoting': false
+                    'enableVoting': true,
+                    'currentUserRating': undefined
                 },
                 '2': {
                     'name': 'Central',
@@ -48,7 +53,8 @@ appControllers.controller('searchController', [
                     'toLocation': true,
                     'isTransit': false,
                     'rating': 3,
-                    'enableVoting': false
+                    'enableVoting': true,
+                    'currentUserRating': undefined
                 },
             };
         };
@@ -71,14 +77,13 @@ appControllers.controller('searchController', [
             return $scope.enabledVotingLocations[stationId];
         };
 
-        $scope.dynamicPopover = {
-            templateUrl: 'ratingPopoverTemplate.html',
-            title: 'Station Rating',
-            rating: 2
-        };
+        $scope.submitRating = function(stationId, locationData) {
+            var rating = locationData.currentUserRating;
 
-        $scope.submitRating = function(stationId, rating) {
-            console.log(stationId);
+            // TODO Submit user rating to server
+
+            this.toggleVoting(stationId);
+            locationData.enableVoting = false;
         }
     }
 ]);

@@ -52,7 +52,7 @@ module.exports = function(grunt) {
                     src: [
                         'bower_components/angular/angular.js',
                         'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-                        'bower_components/angular-route/angular-route.js'
+                        'bower_components/angular-input-stars/angular-input-stars.js'
                     ],
                     dest: 'target/transport-hotspots/resources/js/generated/angularjs-bundle.js',
                     options: {
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
                     src: [
                         'bower_components/angular/angular.min.js',
                         'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-                        'bower_components/angular-route/angular-route.min.js'
+                        'bower_components/angular-input-stars/angular-input-stars.js'
                     ],
                     dest: 'target/transport-hotspots/resources/js/generated/angularjs-bundle.js',
                     options: {
